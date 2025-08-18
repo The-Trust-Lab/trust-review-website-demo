@@ -1,0 +1,142 @@
+[
+  {
+    "id": "classic-tee",
+    "name": "Classic Tee",
+    "slug": "classic-tee",
+    "price": 29.99,
+    "description": "A timeless essential crafted from premium 100% organic cotton. This classic tee features a relaxed fit and ultra-soft texture that gets better with every wash. Perfect for layering or wearing solo.",
+    "images": [
+      "https://picsum.photos/600/800?random=1",
+      "https://picsum.photos/600/800?random=2",
+      "https://picsum.photos/600/800?random=3"
+    ],
+    "category": "Tops",
+    "featured": true,
+    "inStock": true,
+    "colors": [
+      {"name": "White", "value": "#ffffff"},
+      {"name": "Black", "value": "#000000"},
+      {"name": "Navy", "value": "#1e293b"},
+      {"name": "Sage", "value": "#84cc16"}
+    ],
+    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+    "details": {
+      "material": "100% Organic Cotton",
+      "fit": "Relaxed",
+      "care": "Machine wash cold, tumble dry low",
+      "origin": "Made in USA"
+    }
+  },
+  {
+    "id": "premium-hoodie",
+    "name": "Premium Hoodie",
+    "slug": "premium-hoodie",
+    "price": 79.99,
+    "description": "Luxuriously soft French terry hoodie with a modern oversized fit. Features a kangaroo pocket, drawstring hood, and ribbed cuffs. The perfect blend of comfort and street-ready style.",
+    "images": [
+      "https://picsum.photos/600/800?random=4",
+      "https://picsum.photos/600/800?random=5",
+      "https://picsum.photos/600/800?random=6"
+    ],
+    "category": "Outerwear",
+    "featured": true,
+    "inStock": true,
+    "colors": [
+      {"name": "Heather Gray", "value": "#9ca3af"},
+      {"name": "Forest Green", "value": "#16a34a"},
+      {"name": "Charcoal", "value": "#374151"},
+      {"name": "Cream", "value": "#fef3c7"}
+    ],
+    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+    "details": {
+      "material": "80% Cotton, 20% Polyester French Terry",
+      "fit": "Oversized",
+      "care": "Machine wash cold, hang dry",
+      "origin": "Ethically made in Portugal"
+    }
+  },
+  {
+    "id": "slim-fit-jeans",
+    "name": "Slim Fit Jeans",
+    "slug": "slim-fit-jeans",
+    "price": 89.99,
+    "description": "Modern slim-fit jeans crafted from premium stretch denim. Features a mid-rise waist, tapered leg, and subtle fading for that perfect lived-in look. Comfortable enough for all-day wear.",
+    "images": [
+      "https://picsum.photos/600/800?random=7",
+      "https://picsum.photos/600/800?random=8",
+      "https://picsum.photos/600/800?random=9"
+    ],
+    "category": "Bottoms",
+    "featured": true,
+    "inStock": true,
+    "colors": [
+      {"name": "Indigo Wash", "value": "#1e40af"},
+      {"name": "Light Wash", "value": "#93c5fd"},
+      {"name": "Black", "value": "#000000"},
+      {"name": "Raw Denim", "value": "#1f2937"}
+    ],
+    "sizes": ["28", "30", "32", "34", "36", "38", "40"],
+    "details": {
+      "material": "98% Cotton, 2% Elastane",
+      "fit": "Slim",
+      "care": "Machine wash cold, hang dry recommended",
+      "origin": "Made in Turkey"
+    }
+  },
+  {
+    "id": "lightweight-windbreaker",
+    "name": "Lightweight Windbreaker",
+    "slug": "lightweight-windbreaker",
+    "price": 65.99,
+    "description": "Ultra-light packable windbreaker perfect for unpredictable weather. Features water-resistant coating, adjustable hood, and elastic cuffs. Packs down small for easy travel.",
+    "images": [
+      "https://picsum.photos/600/800?random=10",
+      "https://picsum.photos/600/800?random=11",
+      "https://picsum.photos/600/800?random=12"
+    ],
+    "category": "Outerwear",
+    "featured": false,
+    "inStock": true,
+    "colors": [
+      {"name": "Navy", "value": "#1e293b"},
+      {"name": "Olive", "value": "#65a30d"},
+      {"name": "Black", "value": "#000000"},
+      {"name": "Stone", "value": "#a8a29e"}
+    ],
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "details": {
+      "material": "100% Nylon with DWR coating",
+      "fit": "Athletic",
+      "care": "Machine wash cold, air dry",
+      "origin": "Made in Vietnam"
+    }
+  },
+  {
+    "id": "canvas-cap",
+    "name": "Canvas Cap",
+    "slug": "canvas-cap",
+    "price": 34.99,
+    "description": "Classic 6-panel cap made from heavy-duty cotton canvas. Features an adjustable strap, curved brim, and embroidered eyelets for ventilation. A timeless accessory for any outfit.",
+    "images": [
+      "https://picsum.photos/600/800?random=13",
+      "https://picsum.photos/600/800?random=14",
+      "https://picsum.photos/600/800?random=15"
+    ],
+    "category": "Accessories",
+    "featured": false,
+    "inStock": true,
+    "colors": [
+      {"name": "Khaki", "value": "#d6d3d1"},
+      {"name": "Navy", "value": "#1e293b"},
+      {"name": "Black", "value": "#000000"},
+      {"name": "Rust", "value": "#dc2626"}
+    ],
+    "sizes": ["One Size"],
+    "details": {
+      "material": "100% Cotton Canvas",
+      "fit": "Adjustable",
+      "care": "Hand wash recommended",
+      "origin": "Made in USA"
+    }
+  }
+]
