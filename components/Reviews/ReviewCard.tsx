@@ -2,6 +2,7 @@ import { ThumbsUp, Check } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import RatingStars from '@/components/RatingStars';
+import TrustLabsBadge from '@/components/TrustLabsBadge';
 import { Review, formatReviewDate } from '@/lib/reviews';
 
 interface ReviewCardProps {
@@ -31,9 +32,12 @@ export default function ReviewCard({ review, onHelpful }: ReviewCardProps) {
       </div>
 
       <div className="mb-3">
-        <h4 className="font-medium text-slate-900 mb-1">
-          {review.author}
-        </h4>
+        <div className="flex items-center gap-2 mb-1">
+          <h4 className="font-medium text-slate-900">
+            {review.author}
+          </h4>
+          <TrustLabsBadge email={review.email} size="sm" />
+        </div>
         {review.variantPurchased && (
           <p className="text-sm text-slate-600">
             Purchased: {review.variantPurchased}
