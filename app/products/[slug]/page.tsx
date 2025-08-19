@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
-import ProductDetailClient from './ProductDetailClient';
 import { getProduct } from '@/lib/products';
 import { getProductReviews, getReviewSummary } from '@/lib/reviews';
+import ProductDetailClient from './ProductDetailClient';
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
