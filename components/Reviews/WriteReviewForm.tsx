@@ -18,6 +18,7 @@ export default function WriteReviewForm({ onSubmit, onCancel }: WriteReviewFormP
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [author, setAuthor] = useState('');
+  const [email, setEmail] = useState('');
   const [body, setBody] = useState('');
   const [variantPurchased, setVariantPurchased] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -25,7 +26,7 @@ export default function WriteReviewForm({ onSubmit, onCancel }: WriteReviewFormP
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!rating || !author.trim() || !body.trim()) {
+    if (!rating || !author.trim() || !email.trim() || !body.trim()) {
       return;
     }
 
@@ -37,6 +38,7 @@ export default function WriteReviewForm({ onSubmit, onCancel }: WriteReviewFormP
       onSubmit({
         rating,
         author: author.trim(),
+        email: email.trim(),
         body: body.trim(),
         variantPurchased: variantPurchased.trim() || undefined
       });
@@ -44,6 +46,7 @@ export default function WriteReviewForm({ onSubmit, onCancel }: WriteReviewFormP
       // Reset form
       setRating(0);
       setAuthor('');
+      setEmail('');
       setBody('');
       setVariantPurchased('');
     } finally {
@@ -104,6 +107,24 @@ export default function WriteReviewForm({ onSubmit, onCancel }: WriteReviewFormP
             />
           </div>
 
+          {/* Email */}
+          <div>
+            <Label htmlFor="email" className="text-sm font-medium text-slate-700 mb-2 block">
+              Email Address *
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your.email@example.com"
+              required
+            />
+            <p className="text-xs text-slate-500 mt-1">
+              Used for TrustLabs verification badge. Not displayed publicly.
+            </p>
+          </div>
+
           {/* Variant */}
           <div>
             <Label htmlFor="variant" className="text-sm font-medium text-slate-700 mb-2 block">
@@ -136,7 +157,7 @@ export default function WriteReviewForm({ onSubmit, onCancel }: WriteReviewFormP
           <div className="flex gap-4">
             <Button
               type="submit"
-              disabled={!rating || !author.trim() || !body.trim() || isSubmitting}
+              disabled={!rating || !author.trim() || !email.trim() || !body.trim() || isSubmitting}
               className="bg-indigo-600 hover:bg-indigo-700"
             >
               {isSubmitting ? 'Submitting...' : 'Submit Review'}

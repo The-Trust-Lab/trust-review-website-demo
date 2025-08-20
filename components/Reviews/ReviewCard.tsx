@@ -2,14 +2,16 @@ import { ThumbsUp, Check } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import RatingStars from '@/components/RatingStars';
+import TrustLabsBadge from '@/components/TrustLabsBadge';
 import { Review, formatReviewDate } from '@/lib/reviews';
+import { memo } from 'react';
 
 interface ReviewCardProps {
   review: Review;
   onHelpful?: (reviewId: string) => void;
 }
 
-export default function ReviewCard({ review, onHelpful }: ReviewCardProps) {
+function ReviewCard({ review, onHelpful }: ReviewCardProps) {
   return (
     <div className="border-b border-slate-200 pb-6 last:border-b-0">
       <div className="flex items-start justify-between mb-3">
@@ -31,9 +33,12 @@ export default function ReviewCard({ review, onHelpful }: ReviewCardProps) {
       </div>
 
       <div className="mb-3">
-        <h4 className="font-medium text-slate-900 mb-1">
-          {review.author}
-        </h4>
+        <div className="flex items-center gap-2 mb-1">
+          <h4 className="font-medium text-slate-900">
+            {review.author}
+          </h4>
+          <TrustLabsBadge email={review.email} size="sm" />
+        </div>
         {review.variantPurchased && (
           <p className="text-sm text-slate-600">
             Purchased: {review.variantPurchased}
@@ -79,3 +84,6 @@ export default function ReviewCard({ review, onHelpful }: ReviewCardProps) {
     </div>
   );
 }
+
+// Memoize the component to prevent unnecessary re-renders
+export default memo(ReviewCard);

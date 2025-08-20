@@ -5,6 +5,7 @@ export interface Review {
   productId: string;
   rating: number;
   author: string;
+  email: string;
   date: string;
   body: string;
   isVerified: boolean;
@@ -22,6 +23,7 @@ export interface ReviewSummary {
 export interface NewReview {
   rating: number;
   author: string;
+  email: string;
   body: string;
   variantPurchased?: string;
 }
@@ -121,6 +123,7 @@ export function addReview(productId: string, newReview: NewReview): Review {
     productId,
     rating: newReview.rating,
     author: newReview.author,
+    email: newReview.email,
     date: new Date().toISOString().split('T')[0], // YYYY-MM-DD format
     body: newReview.body,
     isVerified: false, // New reviews start as unverified
