@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, memo } from 'react';
 
 interface TrustLabsBadgeProps {
   email: string;
@@ -26,9 +26,11 @@ declare global {
 
 // Intercept fetch requests to log TrustLabs API calls
 let originalFetch: typeof fetch;
+let isNetworkLoggingSetup = false;
 
 const setupNetworkLogging = () => {
-  if (typeof window !== 'undefined' && !originalFetch) {
+  if (typeof window !== 'undefined' && !isNetworkLoggingSetup) {
+    isNetworkLoggingSetup = true;
     originalFetch = window.fetch;
     
     window.fetch = async (...args) => {
@@ -74,26 +76,39 @@ const setupNetworkLogging = () => {
   }
 };
 
-export default function TrustLabsBadge({ 
+// Track which emails have already been processed to avoid duplicate API calls
+const processedEmails = new Set<string>();
+
+function TrustLabsBadge({ 
   email, 
   size = 'sm', 
   theme = 'auto',
   className = '' 
 }: TrustLabsBadgeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const isInitialized = useRef(false);
 
-  // Set up network logging
+  // Set up network logging only once
   useEffect(() => {
     setupNetworkLogging();
   }, []);
 
   useEffect(() => {
+    // Skip if already initialized for this email
+    if (isInitialized.current || processedEmails.has(email)) {
+      return;
+    }
+
     console.log('🏷️ TrustLabsBadge: Creating badge for email:', email);
     
     // Wait for the script to load and define the custom element
     const checkForElement = () => {
       if (customElements.get('trustlabs-badge')) {
         console.log('✅ TrustLabsBadge: Custom element registered, badge should be active');
+        
+        // Mark as processed to avoid duplicate API calls
+        processedEmails.add(email);
+        isInitialized.current = true;
         
         // Set up mutation observer to watch for badge changes
         if (containerRef.current) {
@@ -130,6 +145,11 @@ export default function TrustLabsBadge({
 
   // Monitor when the element gets rendered
   useEffect(() => {
+    // Skip if already initialized
+    if (isInitialized.current) {
+      return;
+    }
+
     const timer = setTimeout(() => {
       if (containerRef.current) {
         const badgeElement = containerRef.current.querySelector('trustlabs-badge');
@@ -167,3 +187,6 @@ export default function TrustLabsBadge({
     />
   );
 }
+
+// Memoize the component to prevent unnecessary re-renders
+export default memo(TrustLabsBadge);

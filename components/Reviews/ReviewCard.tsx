@@ -4,13 +4,14 @@ import { Button } from '@/components/ui/button';
 import RatingStars from '@/components/RatingStars';
 import TrustLabsBadge from '@/components/TrustLabsBadge';
 import { Review, formatReviewDate } from '@/lib/reviews';
+import { memo } from 'react';
 
 interface ReviewCardProps {
   review: Review;
   onHelpful?: (reviewId: string) => void;
 }
 
-export default function ReviewCard({ review, onHelpful }: ReviewCardProps) {
+function ReviewCard({ review, onHelpful }: ReviewCardProps) {
   return (
     <div className="border-b border-slate-200 pb-6 last:border-b-0">
       <div className="flex items-start justify-between mb-3">
@@ -83,3 +84,6 @@ export default function ReviewCard({ review, onHelpful }: ReviewCardProps) {
     </div>
   );
 }
+
+// Memoize the component to prevent unnecessary re-renders
+export default memo(ReviewCard);

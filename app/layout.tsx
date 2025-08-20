@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        <script src="https://cdn.jsdelivr.net/gh/The-Trust-Lab/trust-badge-cdn@main/dist/badge-element.v1.js" async></script>
+      <script src="https://cdn.jsdelivr.net/gh/The-Trust-Lab/trust-badge-cdn@dd51cde515cf4dd2eff9566d2f9da2de41b224d5/dist/badge-element.v1.js" async></script>
       </head>
       <body className="font-sans antialiased min-h-screen bg-background text-foreground">
         <CartProvider>

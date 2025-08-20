@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -40,7 +40,7 @@ export default function ReviewsSection({ productId, reviews: initialReviews, sum
   
   displayReviews = sortReviews(displayReviews, sortBy);
 
-  const handleSubmitReview = (newReview: NewReview) => {
+  const handleSubmitReview = useCallback((newReview: NewReview) => {
     const review = addReview(productId, newReview);
     setReviews(prev => [review, ...prev]);
     
@@ -67,15 +67,15 @@ export default function ReviewsSection({ productId, reviews: initialReviews, sum
     });
     
     setShowWriteReview(false);
-  };
+  }, [productId, reviews]);
 
-  const handleHelpful = (reviewId: string) => {
+  const handleHelpful = useCallback((reviewId: string) => {
     setReviews(prev => prev.map(review => 
       review.id === reviewId 
         ? { ...review, helpfulCount: review.helpfulCount + 1 }
         : review
     ));
-  };
+  }, []);
 
   return (
     <div className="space-y-8">

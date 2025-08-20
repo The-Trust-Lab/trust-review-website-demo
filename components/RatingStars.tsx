@@ -1,5 +1,6 @@
 import { Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { memo } from 'react';
 
 interface RatingStarsProps {
   rating: number;
@@ -9,7 +10,7 @@ interface RatingStarsProps {
   className?: string;
 }
 
-export default function RatingStars({ 
+function RatingStars({ 
   rating, 
   maxStars = 5, 
   size = 'md',
@@ -68,3 +69,6 @@ export default function RatingStars({
     </div>
   );
 }
+
+// Memoize the component to prevent unnecessary re-renders
+export default memo(RatingStars);
