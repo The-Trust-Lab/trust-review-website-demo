@@ -66,7 +66,7 @@ export default function Home() {
       </section>
 
       {/* Featured Products */}
-      <section id="featured" className="py-16">
+      <section id="featured" className="pt-5 pb-5">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">

@@ -9,18 +9,16 @@ interface TrustLabsBadgeProps {
   className?: string;
 }
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'trustlabs-badge': React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement> & {
-          email: string;
-          'data-size'?: string;
-          'data-theme'?: string;
-        },
-        HTMLElement
-      >;
-    }
+declare module 'react' {
+  interface IntrinsicElements {
+    'trustlabs-badge': React.DetailedHTMLProps<
+      React.HTMLAttributes<HTMLElement> & {
+        email: string;
+        'data-size'?: string;
+        'data-theme'?: string;
+      },
+      HTMLElement
+    >;
   }
 }
 
@@ -34,31 +32,21 @@ const setupNetworkLogging = () => {
     originalFetch = window.fetch;
     
     window.fetch = async (...args) => {
-      const [input, init] = args;
+      const [input] = args;
       const url = typeof input === 'string' ? input : 
                   input instanceof URL ? input.toString() : 
                   (input as Request).url;
       
       // Check if this is a TrustLabs API call
       if (url.includes('trustlabs') || url.includes('trust-lab') || url.includes('verification')) {
-        console.log('🔍 TrustLabs Backend Ping Detected:', {
-          url,
-          method: init?.method || 'GET',
-          timestamp: new Date().toISOString(),
-          headers: init?.headers
-        });
+        // Logging removed for production
       }
       
       try {
         const response = await originalFetch(...args);
         
         if (url.includes('trustlabs') || url.includes('trust-lab') || url.includes('verification')) {
-          console.log('✅ TrustLabs Backend Response:', {
-            url,
-            status: response.status,
-            statusText: response.statusText,
-            timestamp: new Date().toISOString()
-          });
+          // Logging removed for production
         }
         
         return response;
@@ -99,12 +87,12 @@ function TrustLabsBadge({
       return;
     }
 
-    console.log('🏷️ TrustLabsBadge: Creating badge for email:', email);
+    // Logging removed for production
     
     // Wait for the script to load and define the custom element
     const checkForElement = () => {
       if (customElements.get('trustlabs-badge')) {
-        console.log('✅ TrustLabsBadge: Custom element registered, badge should be active');
+        // Logging removed for production
         
         // Mark as processed to avoid duplicate API calls
         processedEmails.add(email);
@@ -115,11 +103,7 @@ function TrustLabsBadge({
           const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
               if (mutation.type === 'childList' || mutation.type === 'attributes') {
-                console.log('🔄 TrustLabsBadge: Badge element updated', {
-                  email,
-                  timestamp: new Date().toISOString(),
-                  innerHTML: containerRef.current?.innerHTML?.substring(0, 200)
-                });
+                // Logging removed for production
               }
             });
           });
@@ -134,7 +118,7 @@ function TrustLabsBadge({
           return () => observer.disconnect();
         }
       } else {
-        console.log('⏳ TrustLabsBadge: Waiting for custom element to register...');
+        // Logging removed for production
         // Check again in 100ms
         setTimeout(checkForElement, 100);
       }
@@ -154,18 +138,13 @@ function TrustLabsBadge({
       if (containerRef.current) {
         const badgeElement = containerRef.current.querySelector('trustlabs-badge');
         if (badgeElement) {
-          console.log('🎯 TrustLabsBadge: Element found in DOM, verification should start soon for:', email);
+          // Logging removed for production
           
           // Check if the element has loaded/changed after a delay
           const verifyTimer = setTimeout(() => {
             const currentBadge = containerRef.current?.querySelector('trustlabs-badge');
             if (currentBadge) {
-              console.log('📊 TrustLabsBadge: Current badge state:', {
-                email,
-                outerHTML: currentBadge.outerHTML,
-                textContent: currentBadge.textContent,
-                hasChildren: currentBadge.children.length > 0
-              });
+              // Logging removed for production
             }
           }, 2000);
 
