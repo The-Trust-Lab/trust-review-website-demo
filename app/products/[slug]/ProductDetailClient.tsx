@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 // Removed unused imports: Card, CardContent
 import { Badge } from '@/components/ui/badge';
@@ -25,7 +26,7 @@ export default function ProductDetailClient({ product, reviews, reviewSummary }:
   const [selectedColor, setSelectedColor] = useState(product.colors[0]?.name || '');
   const [selectedSize, setSelectedSize] = useState(product.sizes[0] || '');
   const [quantity, setQuantity] = useState(1);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
 
   const { addToCart } = useCart();
 
@@ -43,14 +44,16 @@ export default function ProductDetailClient({ product, reviews, reviewSummary }:
     <div className="py-8">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          {/* Product Images */}
+          {/* Product Image */}
           <div className="space-y-4">
             <div className="aspect-square rounded-2xl overflow-hidden bg-slate-100">
               {/* Main product image */}
-              {product.images && product.images.length > 0 ? (
-                <img
-                  src={product.images[currentImageIndex]}
-                  alt={`${product.name} - Image ${currentImageIndex + 1}`}
+              {product.image ? (
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  width={600}
+                  height={600}
                   className="w-full h-full object-cover"
                 />
               ) : (
@@ -66,31 +69,6 @@ export default function ProductDetailClient({ product, reviews, reviewSummary }:
                 </div>
               )}
             </div>
-            
-            {/* Image thumbnails */}
-            {product.images && product.images.length > 0 && (
-              <div className="grid grid-cols-4 gap-2">
-                {product.images.map((image, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`
-                      aspect-square rounded-lg overflow-hidden bg-slate-100 border-2 transition-colors
-                      ${currentImageIndex === index 
-                        ? 'border-indigo-500' 
-                        : 'border-slate-200 hover:border-slate-300'
-                      }
-                    `}
-                  >
-                    <img
-                      src={image}
-                      alt={`${product.name} thumbnail ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-            )}
           </div>
 
           {/* Product Info */}

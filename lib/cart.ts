@@ -61,7 +61,7 @@ export function addToCart(
     productId: product.id,
     name: product.name,
     price: product.price,
-    image: product.images[0],
+    image: product.image,
     color: variant.color,
     size: variant.size,
     quantity

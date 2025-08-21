@@ -6,7 +6,7 @@ export interface Product {
   slug: string;
   price: number;
   description: string;
-  images: string[];
+  image: string;
   category: string;
   featured: boolean;
   inStock: boolean;

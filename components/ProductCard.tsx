@@ -1,5 +1,5 @@
-// Removed unused import: Image
 import Link from 'next/link';
+import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import RatingStars from './RatingStars';
@@ -19,10 +19,12 @@ export default function ProductCard({ product }: ProductCardProps) {
       <Link href={`/products/${product.slug}`}>
         <div className="relative aspect-square overflow-hidden bg-slate-50">
           {/* Product image */}
-          {product.images && product.images.length > 0 ? (
-            <img
-              src={product.images[0]}
+          {product.image ? (
+            <Image
+              src={product.image}
               alt={product.name}
+              width={400}
+              height={400}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
           ) : (

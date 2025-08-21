@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { ShoppingBag, Menu, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -25,10 +26,14 @@ export default function Header() {
       <Container>
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center">
-              <span className="text-white font-bold text-sm">TL</span>
-            </div>
+          <Link href="/" className="flex items-center space-x-3">
+            <Image 
+              src="/images/products/threadlablogo.png" 
+              alt="ThreadLab Logo" 
+              width={40}
+              height={40}
+              className="h-10 w-auto"
+            />
             <span className="font-bold text-xl text-slate-800">Thread Lab</span>
           </Link>
 
@@ -85,10 +90,14 @@ export default function Header() {
               <SheetContent side="right" className="w-80">
                 <div className="flex flex-col h-full">
                   {/* Mobile Logo */}
-                  <div className="flex items-center space-x-2 mb-8">
-                    <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">TL</span>
-                    </div>
+                  <div className="flex items-center space-x-3 mb-8">
+                    <Image 
+                      src="/images/products/threadlablogo.png" 
+                      alt="ThreadLab Logo" 
+                      width={32}
+                      height={32}
+                      className="h-8 w-auto"
+                    />
                     <span className="font-bold text-xl text-slate-800">Thread Lab</span>
                   </div>
 
